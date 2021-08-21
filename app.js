@@ -8,6 +8,12 @@ const path = require('path')
 
 const bodyParser = require('body-parser');
 
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+// const employeeRoutes = require('./routes/employee');
+// const deaprtRoutes = require('./routes/department');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -19,6 +25,11 @@ app.use('/adddepart', (req, res) => {
 })
 app.use('/postdepart', (req, res) => {
     const deptName = req.body.dept_name;
+    client.query("create table IF NOT EXISTS department(dept_id serial primary key,dept_name text unique not null)").then(result => {
+        console.log("depart table created");
+    }).catch(err => {
+        console.log(err);
+    })
     client.query(`insert into department(dept_name) values('${deptName}')`).then(result => {
         console.log("inserted dept");
         res.redirect('/department');
@@ -55,6 +66,11 @@ app.use('/postemploy', (req, res) => {
     const EmpName = req.body.emp_name;
     const EmpAge = req.body.emp_age;
     const emp_dept = req.body.emp_dept;
+    client.query("create table IF NOT EXISTS employee(id serial primary key,emp_name text unique not null,emp_age integer not null,dept_id serial not null,dept_name text not null)").then(result => {
+        console.log("depart table created");
+    }).catch(err => {
+        console.log(err);
+    })
     client.query(`select * from department where dept_name = '${emp_dept}'`).then(result => {
         const DeptId = result.rows[0].dept_id;
         const DeptName = result.rows[0].dept_name;
@@ -165,14 +181,24 @@ app.use('/sortDept', (req, res) => {
     });
 })
 
+// app.use('/employee', employeeRoutes);
+
+// app.use(deaprtRoutes);
+
+app.use('/', (req, res, next) => {
+    res.render('index.ejs', {
+        docType: 'Welcome',
+        path: ' '
+    })
+})
+
 
 const client = new Client({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'traklabs',
-    password: 'vignesh@26',
-    port: 2000,
-})
+    connectionString: 'postgres://cslvhlglovazny:18d98c2070eabd8432140cdf43a227aed6b0f6a52af9e1472874f691248f7be6@ec2-3-237-55-96.compute-1.amazonaws.com:5432/d7er7fkp5m5ds5',
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
 client.connect().then(res => {
     console.log("Connnected successfully");
     app.listen(4000);
