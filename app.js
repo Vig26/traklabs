@@ -201,7 +201,7 @@ const client = new Client({
 });
 client.connect().then(res => {
     console.log("Connnected successfully");
-    app.listen(4000);
+    app.listen(process.env.PORT);
 }).catch(err => {
     console.log(err);
 })
