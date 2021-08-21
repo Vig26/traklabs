@@ -2,6 +2,9 @@
     "name": "traklabs",
     "version": "1.0.0",
     "description": "Database operation basic project",
+    "engines": {
+        "node": "14.16.1"
+    },
     "main": "app.js",
     "dependencies": {
         "body-parser": "^1.19.0",
@@ -14,7 +17,7 @@
     "devDependencies": {},
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon app.js"
+        "start": "node app.js"
     },
     "author": "Vignesh S",
     "license": "ISC"
