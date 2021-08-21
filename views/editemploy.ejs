@@ -1,0 +1,36 @@
+<%- include('./includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/main.css">
+    </head>
+
+    <%- include('./includes/nav.ejs') %>
+
+        <body>
+
+            <main>
+                <h2>Edit Employee</h2>
+                <form class="main-form" action="/postEditemploy" method="POST">
+                    <div class="form-control">
+                        <label for="emp_name">Employee Name:</label>
+                        <br>
+                        <input type="text" name='emp_name' id="emp_name" value="<%= empName %>" />
+                    </div>
+                    <div class="form-control">
+                        <label for="emp_age">Employee Age:</label>
+                        <br>
+                        <input type="number" name='emp_age' id="emp_age" value="<%= empAge %>" />
+                    </div>
+                    <div class="form-control">
+                        <label for="emp_age">Choose Department:</label>
+                        <br>
+                        <select class="dropdown" name="emp_dept" id="emp_dept">
+                           <%  for( j = 0; j < Departments.length; j++) { %>
+                           <option value='<%= Departments[j].dept_name %>'><%= Departments[j].dept_name %></option>
+                            <% } %>
+                             </select>
+                    </div>
+                    <input type="hidden" name="empId" value="<%= empId %>">
+                    <button type="submit">Add Employee</button>
+                </form>
+            </main>
+            <%- include('./includes/end.ejs') %>

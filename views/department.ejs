@@ -1,0 +1,34 @@
+<%- include('./includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/adds.css">
+    <link rel="stylesheet" href="/css/main.css">
+    </head>
+
+    <%- include('./includes/nav.ejs') %>
+
+        <body>
+            <form action="/sortDept" method="POST">
+                <button class="sortbtn">SORT</button>
+            </form>
+            <% if(Departments.length > 0) { %>
+                <ul class="orders">
+                    <% for (var i=0, iLen=Departments.length; i<iLen; i++) { %>
+                        <li class="orders__item">
+                            <ul class="orders_products">
+                                <li class="orders__products-item">
+                                    <%= Departments[i].dept_name %>
+                                </li>
+                                <br>
+                                <form action="/delDept" method="POST">
+                                    <button class="btn">Delete</button>
+                                    <input type="hidden" name="deptId" value="<%=Departments[i].dept_id %>">
+                                </form>
+                            </ul>
+                        </li>
+                        <% }; %>
+                </ul>
+                <% } else { %>
+
+                    <h1>Nothing Departments Added!....</h1>
+                    <% } %>
+        </body>
+        <%- include('./includes/end.ejs') %>

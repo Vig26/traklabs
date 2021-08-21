@@ -1,0 +1,26 @@
+<header class="main-header">
+    <nav class="main-header_nav">
+        <ul class="main-header_items-list">
+            <li class="main-header_items">
+                <a class="<%= path === 'depart/Dept' ? 'active' : '' %>" href='/department'>
+                    Departments
+                </a>
+            </li>
+            <li class="main-header_items">
+                <a class="<%= path === 'employee/Emp' ? 'active' : '' %>" href='/employee'>
+                    Employees
+                </a>
+            </li>
+            <li class="main-header_items">
+                <a class="<%= path === 'depart/addDept' ? 'active' : '' %>" href='/adddepart'>
+                   Add Department
+                </a>
+            </li>
+            <li class="main-header_items">
+                <a class="<%= path === 'employee/addEmp' ? 'active' : '' %>" href='/addemploy'>
+                    Add Employees
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>

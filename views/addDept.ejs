@@ -1,0 +1,21 @@
+<%- include('./includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/main.css">
+    </head>
+
+    <%- include('./includes/nav.ejs') %>
+
+        <body>
+
+            <main>
+                <h2>Add Department</h2>
+                <form class="main-form" action="/postdepart" method="POST">
+                    <div class="form-control">
+                        <label for="depart">Department Name:</label>
+                        <br>
+                        <input type="text" name='dept_name' id="dept_name" />
+                    </div>
+                    <button type="submit">Add Department</button>
+                </form>
+            </main>
+            <%- include('./includes/end.ejs') %>
